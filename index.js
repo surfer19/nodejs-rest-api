@@ -11,6 +11,19 @@ var nodeEnv = process.env.NODE_ENV || 'unknown';
 var version = require('./package.json').version || 'unknown';
 var startedByNpm = !!process.env.npm_package_version;
 
+// default to a 'localhost' configuration:
+var connection_string = '127.0.0.1:27017/my-app';
+
+// if OPENSHIFT env variables are present, use the available connection info:
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+    connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+        process.env.OPENSHIFT_APP_NAME;
+    config.db.mongo.url = connection_string;
+}
+
 var server = http.createServer(function (req, res) {
     var url_parts = url.parse(req.url, true);
 
