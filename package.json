@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "bunyan-winston-adapter": "^0.2.0",
-    "lodash": "^4.17.4",
+    //"lodash": "^4.17.4",
     "mongoose": "^4.8.4",
     "mongoose-api-query": "^0.1.1-pre",
     "mongoose-createdmodified": "0.0.2",
