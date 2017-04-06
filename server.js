@@ -73,8 +73,7 @@ server.listen(config.port, function() {
         );
         console.log("my port = " + config.port);
 
-        require('./app/routes')
-
+        require('./api/routes')
     });
 
     global.db = mongoose.connect(config.db.development)

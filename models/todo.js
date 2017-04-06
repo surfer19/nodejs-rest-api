@@ -1,5 +1,5 @@
 
-'use strict'
+'use strict';
 
 const mongoose = require('mongoose'),
     mongooseApiQuery = require('mongoose-api-query'),
