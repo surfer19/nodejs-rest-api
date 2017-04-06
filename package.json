@@ -1,0 +1,13 @@
+{
+  "name": "my-api-docker",
+  "dependencies": {
+    "bunyan-winston-adapter": "^0.2.0",
+    "mongoose": "^4.8.4",
+    "mongoose-api-query": "^0.1.1-pre",
+    "mongoose-createdmodified": "0.0.2",
+    "restify": "^4.3.0",
+    "restify-errors": "^4.3.0",
+    "winston": "^2.3.1",
+    "nodemon": "*"
+  }
+}
