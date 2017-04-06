@@ -1,4 +1,4 @@
-/**
+/***
  * Module Dependencies
  */
 const config      = require('./config'),
