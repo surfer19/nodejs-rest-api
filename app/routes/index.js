@@ -1,15 +1,5 @@
 'use strict';
 
-/*
-
- POST /todos (Creates a ttodo item)
- GET /todos (Lists all todos in the queue)
- GET /todos/:todo_id (Gets a specific ttodo item in the queue)
- PUT /todos/:todo_id (Updates a specific ttodo item in the queue)
- DELETE /todos/:todo_id (Destroys a specific ttodo item in the queue)
-
- */
-
 /**
  * Module Dependencies
  */
