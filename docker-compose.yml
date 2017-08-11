@@ -1,13 +1,16 @@
 inventory:
+  container_name: nodejs-api
   build: .
   command: npm start
   ports:
   - "8080:8080"
+  tty: true
   links:
   - mongodb
   - mongodb:mongodb.cloud66.local
   environment:
     - NODE_ENV=production
     - MONGODB_ADDRESS=mongodb
-mongodb:
+mongodb:  
+  #command: service mongod start
   image: mongo

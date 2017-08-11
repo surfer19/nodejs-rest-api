@@ -55,14 +55,14 @@ server.listen(config.port, function() {
 
     mongoose.connection.on('error', function(err) {
         log.error('Mongoose default connection error: ' + err);
-        process.exit(1)
+        //process.exit(1)
     });
 
     mongoose.connection.on('open', function(err) {
 
         if (err) {
             log.error('Mongoose default connection error: ' + err);
-            process.exit(1)
+            process.exit(69)
         }
 
         log.info(
@@ -76,7 +76,8 @@ server.listen(config.port, function() {
         require('./api/routes')
     });
 
-    global.db = mongoose.connect(config.db.development)
-
+    global.db = mongoose.connect("mongodb://localhost:27017/todos")
+    //global.db = mongoose.connect(config.db.development)
+    // mongodb://"+process.env.MONGODB_ADDRESS+":27017/todos
 });
 

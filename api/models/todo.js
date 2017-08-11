@@ -8,8 +8,9 @@ mongoose.Promise = global.Promise;
 
 
 const TodoSchema = new mongoose.Schema({
-    task: String,
-    status: String
+	//id: number,
+    value: String,
+    status: String 
 });
 
 TodoSchema.plugin(mongooseApiQuery);

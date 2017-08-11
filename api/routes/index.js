@@ -73,30 +73,61 @@ server.get('/todos/:todo_id', function(req, res, next) {
 
 });
 
+
 /**
- *  PUT
+ * UPDATE
  */
-server.put('/todos/:todo_id' ,function (req, res, next) {
+server.put('/todos/:todo_id', function(req, res, next) {
 
     let data = req.body || {};
+    let todo = new Todo(JSON.parse(data));
 
-    if (!data._id){
-        _.extend(data, {
-            _id: req.params.todo_id
-        })
-    }
-
-    Todo.findOne({ _id: req.params.todo_id }, function (err, doc) {
+    Todo.findOne({ _id: req.params.todo_id }, function(err, doc) {
 
         if (err) {
-            log.error(err);
+            log.error(err)
             return next(new errors.InvalidContentError(err.errors.name.message))
         } else if (!doc) {
             return next(new errors.ResourceNotFoundError('The resource you requested could not be found.'))
         }
 
-        res.send(204, doc);
-        next()
-    })
+        Todo.update({ _id: todo._id }, todo, function(err) {
 
-});
+
+            if (err) {
+                log.error(err)
+                return next(new errors.InvalidContentError(err.errors.name.message))
+            }
+            else {
+                console.log("update sucessful \n");
+            }
+
+            res.send(200, todo)
+            next()
+
+        })
+
+    })
+})
+/* 
+ *  Delete record
+ *
+ */
+
+ server.del('/todos/:todo_id', function(req,res){
+    Todo.remove({_id: req.body._id}, function(err){
+        if (err) {
+            log.error(err);
+            res.send(404, req.body)
+            return next(new errors.InternalError(err.message));
+            // TODO ReferenceError: next is not defined
+            next();
+        }
+        else {
+            console.log("delete sucessful \n \n");
+            res.send(200, req.body)
+            // TODO ReferenceError: next is not defined
+            next()
+        }
+    })
+ })
